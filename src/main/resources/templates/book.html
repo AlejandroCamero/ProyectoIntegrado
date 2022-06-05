@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>Prologue - Book</title>
+        <!-- Favicon-->
+        <link rel="icon" type="image/x-icon" th:href="@{/assets/favicon.ico}" />
+        <!-- Bootstrap Icons-->
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+        
+        <script src="https://kit.fontawesome.com/1de7f88765.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Merriweather+Sans:400,700" rel="stylesheet" />
+        <link href="https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic" rel="stylesheet" type="text/css" />
+        <!-- SimpleLightbox plugin CSS-->
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.css" rel="stylesheet" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link th:href="@{/css/styles.css}" rel="stylesheet" />
+    </head>
+    <body id="page-top">
+        <!-- Navigation-->
+        <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+            <div class="container px-4 px-lg-5">
+                <a class="navbar-brand" th:href="@{/}">Prologue</a>
+                <button class="navbar-toggler navbar-toggler-right" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ms-auto my-2 my-lg-0">
+                    	<li><span th:if="${mensaje != null}" class="btn btn-success"><span
+							th:text="${mensaje}"></span></span> <span th:if="${fallo != null}"
+							class="btn btn-danger"><span th:text="${fallo}"></span></span></li>
+							<li th:if="${session.usuario!=null}" class="nav-item"><a class="nav-link">Welcome, 
+						<span class="font-italic" th:text="${session.usuario.username}"></span></a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
+                        <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_ADMIN'}" class="nav-link" th:href="@{/admin/users}">Users</a></li>
+                        <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_CLIENTE'}" class="nav-link" th:href="@{/client/profile}">Profile</a></li>
+                        
+                        <form th:if="${session.usuario!=null}" th:action="@{/logout}"
+						method="POST">
+						<li class="nav-item"><button type="submit" class="btn btn-danger">Logout</button></li>
+						</form>
+                        <li th:if="${session.usuario==null}" class="nav-item"><a class="nav-link" th:href="@{/auth/register}">Register</a></li>
+                        <li th:if="${session.usuario==null}" class="nav-item"><a class="nav-link" th:href="@{/auth/login}">Login</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <!-- Masthead-->
+        <header class="masthead">
+        </br></br></br>
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                    	<center><img class="mb-2" width="400" height="600" th:src="@{'/assets/img/'+${book.id}+'.jpg'}"></center>
+                        <center><h3 class="text-white font-weight-bold" th:text="${book.name}"></h3></center>                        
+                        <div class="container">
+                         <div class="row">
+                         	<div class="column">
+	                        <center><p class="text-white-75 mb-5" th:text="${book.author}"></p></center>
+	                        </div>
+	                        <div class="column">
+	                        <center>
+	                        <div th:if="${session.usuario!=null}">
+	                        <div th:if="${session.usuario.role == 'ROLE_CLIENTE'}">
+	                        <form th:if="${notfavourite!=null}" th:action="@{'/client/unfavourite/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-danger">
+									<i class="bi bi-heart-fill"></i>&nbsp; &nbsp; <span th:text="${notfavourite}"></span>
+									</button>
+							</form>
+	                        
+	                        <!-- DIVIDIR FORM EN DOS PARA EL USO DEL FAVORITO -->
+	                        <form th:if="${favourite!=null}" th:action="@{'/client/favourite/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-danger">
+									<i class="bi bi-heart"></i>&nbsp; &nbsp; <span th:text="${favourite}"></span>
+									</button>
+							</form>
+							<form th:if="${leido!=null}" th:action="@{'/client/read/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-info">
+									<i class="bi bi-book"></i>&nbsp; &nbsp; <span th:text="${leido}"></span>
+									</button>
+							</form>
+							
+							<form th:if="${noleido!=null}" th:action="@{'/client/unread/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-info">
+									<i class="bi bi-book-fill"></i>&nbsp; &nbsp; <span th:text="${noleido}"></span>
+									</button>
+							</form>
+							</div>
+							
+							<div th:if="${session.usuario.role == 'ROLE_MOD'}">
+	                        <form th:if="${notfavourite!=null}" th:action="@{'/moderador/unfavourite/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-danger">
+									<i class="bi bi-heart-fill"></i>&nbsp; &nbsp; <span th:text="${notfavourite}"></span>
+									</button>
+							</form>
+	                        
+	                        <!-- DIVIDIR FORM EN DOS PARA EL USO DEL FAVORITO -->
+	                        <form th:if="${favourite!=null}" th:action="@{'/moderador/favourite/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-danger">
+									<i class="bi bi-heart"></i>&nbsp; &nbsp; <span th:text="${favourite}"></span>
+									</button>
+							</form>
+							<form th:if="${leido!=null}" th:action="@{'/moderador/read/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-info">
+									<i class="bi bi-book"></i>&nbsp; &nbsp; <span th:text="${leido}"></span>
+									</button>
+							</form>
+							
+							<form th:if="${noleido!=null}" th:action="@{'/moderador/unread/' +${book.id}}" method="POST">
+									<button type="submit" class="btn btn-info">
+									<i class="bi bi-book-fill"></i>&nbsp; &nbsp; <span th:text="${noleido}"></span>
+									</button>
+							</form>
+							</div>
+							</div>
+							</center>
+							</div>
+						
+						 </div>
+						</div>
+                    </div>
+                    
+                    <div class="col">
+                        <h4 class="text-white-75 mb-5"><center>Synopsis</center></h4>
+                        <hr class="divider" />
+                        <p class="text-white-75 mb-5" ><i align="justify" th:text="${book.synopsis}"></i></p>
+                        <br>
+                       	<div th:if="${session.usuario!=null}" >
+                        	<a class="btn btn-warning" th:if="${session.usuario.role == 'ROLE_CLIENTE'}" th:href="@{'/client/review/' + ${book.id}}">Make a review</a>
+                        </div>
+                        <a class="btn btn-success" th:href="@{'/books/review/' + ${book.id}}">See reviews</a>
+                 	</div>
+                </div>
+                
+                
+            </div>
+        </header>
+        <!-- Footer-->
+        <footer class="bg-light py-5">
+            <div class="container px-4 px-lg-5"><div class="small text-center text-muted">Copyright &copy; 2022 - Prologue</div></div>
+        </footer>
+        <!-- Bootstrap core JS-->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- SimpleLightbox plugin JS-->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/SimpleLightbox/2.1.0/simpleLightbox.min.js"></script>
+        <!-- Core theme JS-->
+        <script src="js/scripts.js"></script>
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <!-- * *                               SB Forms JS                               * *-->
+        <!-- * * Activate your form at https://startbootstrap.com/solution/contact-forms * *-->
+        <!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *-->
+        <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+    </body>
+</html>
