@@ -35,6 +35,7 @@
 						<span class="font-italic" th:text="${session.usuario.username}"></span></a></li>
 						<li th:if="${enabled!=null}" class="nav-item"><span th:text="${enabled}" class="btn btn-success"></span></li>
                         <li th:if="${disabled!=null}" class="nav-item"><span th:text="${disabled}" class="btn btn-danger"></span></li>
+                        <li class="nav-item"><a class="btn btn-info" th:href="@{/admin/usersNotEnable}"></a></li>
                         &nbsp;
                         <form th:if="${session.usuario!=null}" th:action="@{/logout}"
 						method="POST">
@@ -59,7 +60,7 @@
         <section class="page-section" id="services">
             <div class="container px-4 px-lg-5">
                 <div class="row gx-4 gx-lg-5">
-                <a class="btn btn-info" th:href="@{/admin/usersNotEnable}"></a>
+               
                 <table class="table">
 				  <thead class="thead-dark">
 				    <tr>
