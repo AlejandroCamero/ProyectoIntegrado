@@ -15,6 +15,8 @@ import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Libro {
 
@@ -43,6 +45,7 @@ public class Libro {
 	@NotNull
 	@NotEmpty(message="Synopsis can not be empty")
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	private String synopsis;
 	
 	@ManyToMany()
