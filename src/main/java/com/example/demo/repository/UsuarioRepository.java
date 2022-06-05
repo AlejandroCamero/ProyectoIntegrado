@@ -15,4 +15,5 @@ public interface UsuarioRepository extends JpaRepository<Usuario,Integer>{
 	public List<Usuario> findByRole(String role);
 	public List<Usuario> findAllByRoleOrderByUsername(String role);
 	public Usuario findById(int id);
+	public Usuario findByEnabled(boolean b);
 }

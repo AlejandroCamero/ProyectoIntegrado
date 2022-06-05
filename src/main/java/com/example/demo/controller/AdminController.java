@@ -37,6 +37,12 @@ public class AdminController {
 		return "admin/usuarios";
 	}
 	
+	@GetMapping("/usersNotEnable")
+	public String usuariosNoEnabled(Model model) {
+		model.addAttribute("usuarios",usuarioService.findByEnabled(false));
+		return "admin/usuarios";
+	}
+	
 	@PostMapping("disableUser/{id}")
 	public String disable(@PathVariable int id, Model model,RedirectAttributes flash) {
 		Usuario us = usuarioService.findById(id);

@@ -71,4 +71,11 @@ public class UsuarioServiceImpl implements UsuarioService{
 		return usuarioRepository.save(us);
 	}
 
+
+	@Override
+	public Usuario findByEnabled(boolean b) {
+		// TODO Auto-generated method stub
+		return usuarioRepository.findByEnabled(b);
+	}
+
 }

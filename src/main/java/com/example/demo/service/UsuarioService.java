@@ -14,4 +14,5 @@ public interface UsuarioService {
 	Usuario enableUser(Usuario us);
 	int removeUser(int id);
 	Usuario update(Usuario us);
+	Usuario findByEnabled(boolean b);
 }
