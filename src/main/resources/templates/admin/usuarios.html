@@ -35,7 +35,7 @@
 						<span class="font-italic" th:text="${session.usuario.username}"></span></a></li>
 						<li th:if="${enabled!=null}" class="nav-item"><span th:text="${enabled}" class="btn btn-success"></span></li>
                         <li th:if="${disabled!=null}" class="nav-item"><span th:text="${disabled}" class="btn btn-danger"></span></li>
-                        <li class="nav-item"><a th:href="@{/admin/usersNotEnable}">Users not enabled</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/admin/usersNotEnable}">Users not enabled</a></li>
                         &nbsp;
                         <form th:if="${session.usuario!=null}" th:action="@{/logout}"
 						method="POST">
