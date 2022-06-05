@@ -30,7 +30,7 @@
 							th:text="${mensaje}"></span></span> <span th:if="${fallo != null}"
 							class="btn btn-danger"><span th:text="${fallo}"></span></span></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
-                        <li class="nav-item"><a class="nav-link" th:href="@{/moderador/updatepassword}">Update Password</a></li>
+                        <li class="nav-item"><a class="nav-link" th:href="@{/client/updatepassword}">Update Password</a></li>
 						<form th:if="${session.usuario!=null}" th:action="@{/logout}" method="POST">
 							<li class="nav-item"><button type="submit" class="btn btn-danger">Logout</button></li>
 						</form>

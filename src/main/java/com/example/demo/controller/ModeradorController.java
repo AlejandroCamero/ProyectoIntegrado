@@ -48,7 +48,7 @@ public class ModeradorController {
 		String username = auth.getName();
 		Usuario usuario = usuarioService.findByEmail(username);
 		model.addAttribute("user",usuario);
-		return "cliente/profile";
+		return "moderador/profile";
 	}
 	
 	@GetMapping("/updatepassword")
@@ -56,7 +56,7 @@ public class ModeradorController {
 		String username = auth.getName();
 		Usuario usuario = usuarioService.findByEmail(username);
 		model.addAttribute("user",usuario);
-		return "cliente/updatepassword";
+		return "moderador/updatepassword";
 	}
 	
 	@PostMapping("/update")
