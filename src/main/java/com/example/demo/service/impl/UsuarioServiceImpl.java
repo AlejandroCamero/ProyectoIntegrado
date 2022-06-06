@@ -73,7 +73,7 @@ public class UsuarioServiceImpl implements UsuarioService{
 
 
 	@Override
-	public Usuario findByEnabled(boolean b) {
+	public List<Usuario> findByEnabled(boolean b) {
 		// TODO Auto-generated method stub
 		return usuarioRepository.findByEnabled(b);
 	}
