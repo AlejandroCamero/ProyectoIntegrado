@@ -82,7 +82,7 @@ public class AdminController {
 		}else {
 			flash.addFlashAttribute("mensaje","That gender actually exists");
 		}
-		return "redirect:admin/gender";
+		return "redirect:/admin/gender";
 	}
 	
 
