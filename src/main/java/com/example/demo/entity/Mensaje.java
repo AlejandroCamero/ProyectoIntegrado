@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 
+import org.hibernate.annotations.Type;
+
 @Entity
 public class Mensaje {
 	
@@ -26,6 +28,7 @@ public class Mensaje {
 	
 	@Column(name="message")
 	@Lob
+	@Type(type = "org.hibernate.type.TextType")
 	private String message;
 
 	public Mensaje(int id, Usuario idEmisor, Usuario idReceptor, String message) {
