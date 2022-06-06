@@ -35,4 +35,10 @@ public class GeneroServiceImpl implements GeneroService{
 		// TODO Auto-generated method stub
 		return generoRepository.save(genero);
 	}
+
+	@Override
+	public int removeGender(int id) {
+		generoRepository.deleteById(id);
+		return 0;
+	}
 }

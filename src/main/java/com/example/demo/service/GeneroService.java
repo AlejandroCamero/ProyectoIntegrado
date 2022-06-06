@@ -9,4 +9,5 @@ public interface GeneroService {
 	List<Genero> listAll();
 	Genero findByName(String name);
 	Genero save(Genero genero);
+	int removeGender(int id);
 }

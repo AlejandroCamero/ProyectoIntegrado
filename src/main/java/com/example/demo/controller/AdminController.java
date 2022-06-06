@@ -85,5 +85,18 @@ public class AdminController {
 		return "redirect:/admin/gender";
 	}
 	
+	@GetMapping("viewGenders")
+	public String genders(Model model) {
+		model.addAttribute("genders",generoService.listAll());
+		return "admin/genders";
+	}
+	
+	@PostMapping("gender/delete/{id}")
+	public String deleteGender(@PathVariable(name="id") Integer id, RedirectAttributes flash) {
+		generoService.removeGender(id);
+		flash.addFlashAttribute("enabled", "Gender deleted");
+		return "redirect:/admin/gender";
+	}
+	
 
 }
