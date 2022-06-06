@@ -33,6 +33,8 @@
 						<span class="font-italic" th:text="${session.usuario.username}"></span></a></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/books}">Books</a></li>
                         <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_ADMIN'}" class="nav-link" th:href="@{/admin/users}">Users</a></li>
+                        <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_ADMIN'}" class="nav-link" th:href="@{/admin/viewGenders}">Genders</a></li>
+                        <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_ADMIN'}" class="nav-link" th:href="@{/admin/gender}">Add Gender</a></li>
                         <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_MOD'}" class="nav-link" th:href="@{/moderador/reviews}">Reviews</a></li>
                         <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_MOD'}" class="nav-link" th:href="@{/moderador/inbox}">Messages</a></li>
                         <li th:if="${session.usuario!=null}"  class="nav-item"><a th:if="${session.usuario.role == 'ROLE_MOD'}" class="nav-link" th:href="@{/moderador/profile}">Profile</a></li>

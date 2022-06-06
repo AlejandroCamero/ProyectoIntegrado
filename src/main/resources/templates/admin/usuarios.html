@@ -37,6 +37,7 @@
                         <li th:if="${disabled!=null}" class="nav-item"><span th:text="${disabled}" class="btn btn-danger"></span></li>
                         <li class="nav-item"><a class="nav-link" th:href="@{/admin/usersNotEnable}">Users not enabled</a></li>
                         <li th:if="${session.usuario!=null}"  class="nav-item"><a class="nav-link" th:href="@{/admin/gender}">Add Gender</a></li>
+                        <li th:if="${session.usuario!=null}"  class="nav-item"><a class="nav-link" th:href="@{/admin/viewGenders}">Genders</a></li>
                         &nbsp;
                         <form th:if="${session.usuario!=null}" th:action="@{/logout}"
 						method="POST">

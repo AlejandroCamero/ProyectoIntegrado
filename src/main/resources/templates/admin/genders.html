@@ -70,7 +70,7 @@
 				    </tr>
 				  </thead>
 				  <tbody>
-				    <tr th:each="genders : ${gender}">
+				    <tr th:each="gender : ${genders}">
 				      <th scope="row" th:text="${gender.name}"></th>
 				      <td>
 					      <form th:action="@{'/admin/gender/delete/'+${gender.id}}" method="POST">
