@@ -29,4 +29,10 @@ public class GeneroServiceImpl implements GeneroService{
 		// TODO Auto-generated method stub
 		return generoRepository.findByName(name);
 	}
+
+	@Override
+	public Genero save(Genero genero) {
+		// TODO Auto-generated method stub
+		return generoRepository.save(genero);
+	}
 }

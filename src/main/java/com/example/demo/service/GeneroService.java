@@ -8,4 +8,5 @@ import com.example.demo.entity.Libro;
 public interface GeneroService {
 	List<Genero> listAll();
 	Genero findByName(String name);
+	Genero save(Genero genero);
 }
